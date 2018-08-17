@@ -529,6 +529,18 @@
                                             (where {:age [> 5]}))]})
                  (where {:email [like "%@gmail.com"]}))))))
 
+(deftest select-not-like
+  (are [query result] (= query result)
+       "SELECT \"blah\".* FROM \"blah\" WHERE (\"blah\".\"id\" NOT LIKE ?)"
+       (sql-only (select (-> (select* "blah")
+                             (where {:id [not-like 5]}))))))
+
+(deftest select-not-ilike
+  (are [query result] (= query result)
+       "SELECT \"blah\".* FROM \"blah\" WHERE (\"blah\".\"id\" NOT ILIKE ?)"
+       (sql-only (select (-> (select* "blah")
+                             (where {:id [not-ilike 5]}))))))
+
 (deftest select-query-object
   (are [query result] (= query result)
        "SELECT \"blah\".* FROM \"blah\" WHERE (\"blah\".\"id\" = ?)"

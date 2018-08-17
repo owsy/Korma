@@ -22,7 +22,9 @@
 (defn pred->= [k v]     (infix k ">=" v))
 (defn pred-<= [k v]     (infix k "<=" v))
 (defn pred-like [k v]   (infix k "LIKE" v))
+(defn pred-not-like [k v]   (infix k "NOT LIKE" v))
 (defn pred-ilike [k v]  (infix k "ILIKE" v))
+(defn pred-not-ilike [k v]  (infix k "NOT ILIKE" v))
 
 (defn pred-exists [v]   (wrapper "EXISTS" v))
 
